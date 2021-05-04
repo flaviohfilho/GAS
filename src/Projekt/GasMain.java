@@ -86,15 +86,19 @@ public class GasMain extends JFrameConnection {
             mainCards.repaint();
             mainCards.revalidate();
 
+           try{
+               activePumpComboBox.setModel(new DefaultComboBoxModel<>(getActivePumps()));
+               productCategoriesComboBox.setModel(new DefaultComboBoxModel<>(getProductsCategories()));
+               listProducts.setListData(getProducts());
 
-            activePumpComboBox.setModel(new DefaultComboBoxModel<>(getActivePumps()));
-            productCategoriesComboBox.setModel(new DefaultComboBoxModel<>(getProductsCategories()));
-            listProducts.setListData(getProducts());
+               if(!activePumpComboBox.getSelectedItem().equals("")){
+                   billnr = activeBills.get(activePumpComboBox.getSelectedItem());
+                   billElementsList.setListData(getBillElements(billnr));
+               }
 
-            if(!activePumpComboBox.getSelectedItem().equals("")){
-                    billnr = activeBills.get(activePumpComboBox.getSelectedItem());
-                    billElementsList.setListData(getBillElements(billnr));
-            }
+           }catch (NullPointerException er){
+                    JOptionPane.showMessageDialog(null,"No active Pump");
+           }
 
 
         });
