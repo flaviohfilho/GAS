@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class GasMain extends Connection {
+public class GasMain extends JFrameConnection {
 
     public static JFrame frame = new JFrame("Gas Main");
 
